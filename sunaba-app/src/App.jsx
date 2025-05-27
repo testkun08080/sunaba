@@ -14,7 +14,7 @@ function App() {
         {/* <Hero /> */}
         <main>
           <Routes>
-            <Route path="/" element={<LogoSamples />} />
+            <Route path="/sunaba" element={<LogoSamples />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
