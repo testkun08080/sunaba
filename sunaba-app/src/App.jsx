@@ -15,7 +15,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/sunaba" element={<LogoSamples />} />
-            <Route path="*" element={<NotFound />} />
+            {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>
         </main>
       </div>
