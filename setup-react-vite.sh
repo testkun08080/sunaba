@@ -2,6 +2,11 @@
 
 #  Get the project name from the argument, default to "bite-react-app"
 PROJECT_NAME=${1:-vite-react-app}
+REPO_NAME=${2:-repo-name}
+USER_NAME=${3:-user-name}
+
+# GitHub Pages URL
+HOMEPAGE_URL="https://${USER_NAME}.github.io/${REPO_NAME}/"
 
 # Creat th vite project
 echo "Initializing Vite project..."
@@ -17,6 +22,14 @@ npm install
 # Install react-router-dom
 echo "Installing react-router-dom..."
 npm install react-router-dom
+
+# Install gh-pages
+echo "Installing gh-pages for deployment..."
+npm install gh-pages --save-dev
+
+# Add homepage into package.json
+echo "Setting homepage in package.json..."
+jq ".homepage = \"$HOMEPAGE_URL\" | .scripts += {\"predeploy\": \"npm run build\", \"deploy\": \"gh-pages -d dist\"}" package.json > package.tmp && mv package.tmp package.json
 
 # Install Tailwind CSS and its dependencies
 echo "Setting up Tailwind CSS..."
@@ -58,6 +71,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  base: /"$REPO_NAME"/
 })
 EOL
 
