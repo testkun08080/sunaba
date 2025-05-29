@@ -1,12 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import NotFound from "./pages/NotFound";
 import LogoSamples from "./pages/LogoSamples";
 
 function App() {
-  const [showHeader, setShowHeader] = useState(true); // ヘッダーの表示/非表示を制御
-  const rootRef = useRef(null); // `root` 要素の参照
+  const rootRef = useRef(null);
 
   return (
     <Router>
@@ -14,8 +13,8 @@ function App() {
         {/* <Hero /> */}
         <main>
           <Routes>
-            <Route path="/sunaba" element={<LogoSamples />} />
-            {/* <Route path="*" element={<NotFound />} /> */}
+            <Route path="/" element={<LogoSamples />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
       </div>
